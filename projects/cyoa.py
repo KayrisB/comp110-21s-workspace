@@ -1,5 +1,6 @@
-"""A lil game for encouragement and minor procrastinators."""
+"""A game for encouragement and/or minor procrastinators."""
 """I attempted a game loop--see maybe_end below. :)"""
+"""Not sure if I did the other above-and-beyond portion"""
 
 from random import randint
 
@@ -39,19 +40,17 @@ def greet() -> None:
     player = input("Welcome to my lil quiz! What should I call ya? ")
 
 def maybe_end() -> None:
-    """implementation of game loop, allowing player to end or continue the game""" 
-    """after completing a branch of gameplay"""
+    """implementation of game loop, allowing player to end or continue the game 
+    after completing a branch of gameplay"""
     print(f"You've got {points} points!")
-    finish: str = str(input(f"Play again? {STAR_STRUCK}--yeah/nah: "))
-    while finish == "yeah":
+    while input(f"Play again? {STAR_STRUCK}--yeah/nah: ") == "yeah":
         print(f"Okay, let's go again and rack up some more points!")
         get_started()
     not_today()
 
 def not_today() -> None:
-    """For the ones who just aren't in the mood"""
-    maybe_go: str = str(input(f"Are you sure you want to go, {player}? {BIG_LOVE} yes/no-- "))
-    while maybe_go == "no":
+    """For the ones who just aren't in the mood; also destination for players who choose not to replay"""
+    while input(f"Are you sure you want to go, {player}? {BIG_LOVE} yes/no-- ") == "no":
         print(f"Awesome! Let's play again {CUTIE_PIE}")
         get_started()
     print(f"I'll let ya go, {player}; you finished with {points} points. Have a lovely day! {BIG_HUGS}")
@@ -62,7 +61,7 @@ def feel_better(points: int) -> int:
     while input(f"Need more positivity, {player}? yes/no: ") == "yes":
         print(f"I gotchu, {player} {BIG_HUGS}")
         points += 1
-        choose_chill: str = str(input(f"Let's turn that frown upside-down, {player}! Want to -choose- or -chill-? "))
+        choose_chill: str = str(input(f"Let's turn that frown upside-down, {player}! -choose- or -chill-? "))
         points += 1
         if choose_chill == "choose":
             ha_ha: str = str(input(f"Sure, {player}! Want a -quote- or -joke-? "))
@@ -109,9 +108,9 @@ def feel_better(points: int) -> int:
     return points
 
 def get_started() -> None:
-    """The starting point of the actual quiz/game"""
-    """Also where player returns to when choosing to replay"""
-    first_q: str = str(input(f"How are ya feeling today? Type -solid- or -rough- to continue. Type -meh- to end-- "))
+    """The starting point of the game, where user input -meh- allows user to end the game;
+    also return point for replay"""
+    first_q: str = str(input(f"How are ya feeling? Type -solid- or -rough- to play. Type -meh- to end: "))
     global points
     if first_q == "solid" or "rough" or "meh":
         if first_q == "solid":
@@ -127,7 +126,7 @@ def get_started() -> None:
             not_today()
 
 def good_feels(choices: str) -> None:
-    """For the ones feeling pretty good"""
+    """For the ones who are feelin' good"""
     choice_one: int = int(input(f"To get started, pick a number between 1 and 4: "))
     global points
     points += 1        
@@ -137,13 +136,14 @@ def good_feels(choices: str) -> None:
             choice_a: str = str(input(f"Gimme a colour! Pick between blue/red/yellow: "))
             points += 1
             if choice_a == "blue":
-                print(f"You seem pretty zen, {player}. But like the ocean, there's power under that calm exterior {WATER_POWER}")
+                print(f"You seem pretty zen, {player}.")
+                print(f"But like the ocean, there's power under that calm surface {WATER_POWER}")
                 maybe_end()
             if choice_a == "red":
-                print(f"{player}, your spark ignites others' energy and power--just like a fire {FIRE_POWER}")
+                print(f"{player}, your spark ignites others' energy--just like fire {FIRE_POWER}")
                 maybe_end()
             else:
-                print(f"You've got a sunshiny warmth and brightness that draws others to you, {player} {YOU_ARE_MY_SUNSHINE}")
+                print(f"You've a sunshiny warmth that draws others to you, {player} {YOU_ARE_MY_SUNSHINE}")
                 maybe_end()
         if choice_one == 2:
             print(f"What bird are you? Let's find out, {player}!")
@@ -153,10 +153,10 @@ def good_feels(choices: str) -> None:
                 choice_c: str = str(input(f"Love it, {player}! What do you prefer--cook/takeout: "))
                 points += 1
                 if choice_c == "cook":
-                    print(f"You're definitely an {WISE_BIRDIE}! Your quiet strength and independence is cool, {player}.")
+                    print(f"You're an {WISE_BIRDIE}! Your quiet strength + independence is cool, {player}.")
                     maybe_end()
                 else:
-                    print(f"We've got a {CHILLY_BIRDIE}! People love your go-with-the-flow mentality, {player}.")
+                    print(f"We've got a {CHILLY_BIRDIE}! Love your go-with-the-flow mentality, {player}.")
                     maybe_end()
             else: 
                 choice_d: str = str(input("Which friends do you like to hang out with most? new/old: "))
@@ -165,7 +165,8 @@ def good_feels(choices: str) -> None:
                     print(f"{player}, you're almost certainly a {WALKIE_TALKIE}--super fun and spontaneous.")
                     maybe_end()
                 else: 
-                    print(f"We've got a {RUBBER_DUCKY} on our hands! Most don't notice, but you're the glue of the group, {player}.")
+                    print(f"We've got a {RUBBER_DUCKY} on our hands!")
+                    print(f"Most don't notice how hard you work, but it'll pay off, {player}.")
                     maybe_end()
         if choice_one == 3:
             print(f"What fruit are you most like, {player}? Let's find out!")
@@ -184,10 +185,11 @@ def good_feels(choices: str) -> None:
                 choice_g: str = str(input("Which films do you like better--action/comedy: "))
                 points += 1
                 if choice_g == "action":
-                    print(f"Oooo, a {SPINY_SWEET} for sure! Your spiky exterior protects your sweet spirit... trust is good, {player}.")
+                    print(f"Oooo, a {SPINY_SWEET} for sure! A spiky exterior protects your sweet spirit...")
+                    print(f"but trust is good too, {player}.")
                     maybe_end()
                 else:
-                    print(f"You're someone people can count on, {player}--like a {BANANANANA}. Keep being you!")
+                    print(f"You're a reliable go-to person, {player}--like a {BANANANANA}. Keep being you!")
                     maybe_end()                  
     else:
         print(f"Which flower are you, {player}? Let's get to it!")
@@ -200,10 +202,10 @@ def good_feels(choices: str) -> None:
                 print(f"You've got a sunny disposition, {player}--just like a {SUNFLOWER_POWER}!")
                 maybe_end()
             else: 
-                print(f"Like a {TWO_LIP}, you've pushed through tough times to become the wonderful you here now.")
+                print(f"Like a {TWO_LIP}, you've pushed through tough times to become this wonderful you.")
                 maybe_end()
         if choice_h == "b":
-            choice_j: str = str(input("I need a little more info--which is your favourite, winter or summer? "))
+            choice_j: str = str(input("I need a little more info--what's your favourite, winter or summer? "))
             points += 1
             if choice_j == "winter":
                 print(f"You're a {VERY_CHERRY}--you give people hope when times are rough, {player}.")
@@ -218,12 +220,13 @@ def good_feels(choices: str) -> None:
                 print(f"Oh, a {BUILD_ME_UP}! You take joy in the little things, {player}--never stop.")
                 maybe_end()
             else:
-                print(f"As a {TINTED_GLASSES}, people find you mysterious... your love of the darkly beautiful is unique.")
+                print(f"As a {TINTED_GLASSES}, people find you mysterious...")
+                print(f"your love of the darkly beautiful is unique.")
                 maybe_end()
 
 def main() -> None:
     """The entrypoint of the program, when run as a module."""
-    """Play moves to get_started, which has 3 play options."""
+    """For sake of clarity, play moves to get_started, which has the 3 play options."""
     greet()
     print(f"Okie dokie, { player }!")
     global points
