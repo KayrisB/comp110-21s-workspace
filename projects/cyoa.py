@@ -1,6 +1,5 @@
-"""A game for encouragement and/or minor procrastinators."""
-"""I attempted a game loop--see maybe_end below. :)"""
-"""Not sure if I did the other above-and-beyond portion"""
+"""A game for encouragement and/or minor procrastinators. I attempted a game loop--see maybe_end below. :)
+Not sure if I met the other above-and-beyond portion..."""
 
 from random import randint
 
@@ -162,7 +161,7 @@ def good_feels(choices: str) -> None:
                 choice_d: str = str(input("Which friends do you like to hang out with most? new/old: "))
                 points += 1
                 if choice_d == "new":
-                    print(f"{player}, you're almost certainly a {WALKIE_TALKIE}--super fun and spontaneous.")
+                    print(f"{player}, you're almost certainly a {WALKIE_TALKIE}--super fun + spontaneous.")
                     maybe_end()
                 else: 
                     print(f"We've got a {RUBBER_DUCKY} on our hands!")
